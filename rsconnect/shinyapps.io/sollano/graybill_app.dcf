@@ -1,0 +1,11 @@
+name: graybill_app
+title:
+account: sollano
+server: shinyapps.io
+appId: 107857
+bundleId: 701740
+url: https://sollano.shinyapps.io/graybill_app/
+when: 1486348919.7873
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: ui_old.R|www/bootstrap.css|www/bootstrap2.css|www/bootstrap3.css|www/bootstrap4.css|www/bootstrap5.css|www/bootstrap6.css|www/bootstrap7.css|www/bootstrap9.css
