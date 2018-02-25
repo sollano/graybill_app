@@ -1,8 +1,7 @@
 library(shiny)
 library(ggplot2)
 library(DT)
-library(xlsx)
-library(xlsxjars)
+library(openxlsx)
 
 FdeGraybill_ <- function(df, Y1, Yj, alpha = 0.05, Tab = 3) {
   
@@ -64,7 +63,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     }else {
       file.copy(inFile$datapath,
                 paste(inFile$datapath, "xlsx", sep="."));
-      mydata <- readxl::read_excel(paste(inFile$datapath, "xlsx", sep="."), 1)       
+      mydata <- openxlsx::read.xlsx(paste(inFile$datapath, "xlsx", sep="."), 1)       
     }
 
     names(mydata) # nomes das variaveis do arquivo carregado
@@ -264,11 +263,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     
     content = function(file) {
 
-      
-        xlsx::write.xlsx2(as.data.frame( tabgraybill() ), file, row.names = F)
-      
-      
-      
+      openxlsx::write.xlsx(as.data.frame( tabgraybill() ), file)
       
     }
   )
