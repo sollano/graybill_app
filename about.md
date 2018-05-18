@@ -22,6 +22,12 @@ estimativas dos parâmetros, conforme metodologia descrita por GRAYBILL
 [Marcio Leles R. de Oliveira](http://lattes.cnpq.br/1808132114787261 "Curriculum Lattes") &
 [Eric Bastos Gorgens](http://lattes.cnpq.br/2266409430041146 "Curriculum Lattes").
 
+#### Para citar e referenciar este app, utilize:
+
+(BRAGA; OLIVEIRA; GORGENS, 2016)
+
+BRAGA, S. R.; OLIVEIRA, M. L. R. DE; GORGENS, E. B. Graybill App: Aplicativo shiny para o teste F de Graybill, 2016. Disponível em: <http://gorgens.wixsite.com/treelab>.
+
 ### Referências:
 
 CAMPOS, J. C. C.; LEITE, H. G. Mensuração florestal: perguntas e respostas. 3ª. ed. Viçosa: Editora UFV, 2013. 605 p.
