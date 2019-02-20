@@ -5,6 +5,8 @@ library(readxl)
 #library(shinythemes)
 library(googlesheets)
 library(rgeolocate)
+library(dplyr)
+
 
 inputUserid <- function(inputId, value='') {
   #   print(paste(inputId, "=", value))

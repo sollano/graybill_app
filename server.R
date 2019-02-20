@@ -4,6 +4,7 @@ library(DT)
 library(openxlsx)
 library(googlesheets)
 library(rgeolocate)
+library(dplyr)
 
 FdeGraybill_ <- function(df, Y1, Yj, alpha = 0.05, Tab = 3) {
   
