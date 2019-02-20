@@ -3,6 +3,27 @@ library(DT)
 library(markdown)
 library(readxl)
 #library(shinythemes)
+library(googlesheets)
+library(rgeolocate)
+
+inputUserid <- function(inputId, value='') {
+  #   print(paste(inputId, "=", value))
+  tagList(
+    singleton(tags$head(tags$script(src = "js/md5.js", type='text/javascript'))),
+    singleton(tags$head(tags$script(src = "js/shinyBindings.js", type='text/javascript'))),
+    tags$body(onload="setvalues()"),
+    tags$input(id = inputId, class = "userid", value=as.character(value), type="text", style="display:none;")
+  )
+}
+
+inputIp <- function(inputId, value=''){
+  tagList(
+    singleton(tags$head(tags$script(src = "js/md5.js", type='text/javascript'))),
+    singleton(tags$head(tags$script(src = "js/shinyBindings.js", type='text/javascript'))),
+    tags$body(onload="setvalues()"),
+    tags$input(id = inputId, class = "ipaddr", value=as.character(value), type="text", style="display:none;")
+  )
+}
 
 shinyUI( # cria a interface de usuario
   #shinythemes::themeSelector(),
@@ -15,6 +36,11 @@ shinyUI( # cria a interface de usuario
     sidebarLayout( # barra lateral
       
       sidebarPanel( # painel lateral
+        
+        # logging ####
+        inputIp("ipid"),
+        inputUserid("fingerprint"),
+        # ####
         
         fileInput( # input de arquivos
           inputId = "file1", # Id
