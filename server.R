@@ -1,10 +1,12 @@
 library(shiny)
 library(ggplot2)
 library(DT)
+library(readxl)
 library(openxlsx)
 library(googlesheets)
 library(rgeolocate)
 library(dplyr)
+library(shinyalert)
 
 FdeGraybill_ <- function(df, Y1, Yj, alpha = 0.05, Tab = 3) {
   
@@ -109,7 +111,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     }else {
       file.copy(inFile$datapath,
                 paste(inFile$datapath, "xlsx", sep="."));
-      mydata <- openxlsx::read.xlsx(paste(inFile$datapath, "xlsx", sep="."), 1)       
+      mydata <- readxl::read_xlsx(paste(inFile$datapath, "xlsx", sep="."), input$sheet_n, na = c("","NA"))        
     }
 
     names(mydata) # nomes das variaveis do arquivo carregado
@@ -216,7 +218,8 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     if(is.null(x)){return()} # se o arquivo nao for carregado, retornar null
     
     datatable(x, options = list(searching = FALSE,
-                                          paging=FALSE ) )
+                                          paging=FALSE,
+                                info=FALSE) )
     
     })
 
@@ -295,10 +298,40 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     df <- df[!vals$keeprows, ]
     
     datatable(df, options = list(searching = FALSE,
-                                 paging = FALSE)) # Criamos uma DT::datatable com base no objeto
+                                 paging = FALSE,
+                                 info=FALSE)) # Criamos uma DT::datatable com base no objeto
 
   })
     
+  
+  # Cria um valor inicial zero para verificar se o usuario fez algum download ou nao.
+  # Se o usuario clicar em algum botao de download, sera add a esse valor uma unidade.
+  rnDownloads <- reactiveValues(ndown=0)
+  
+  
+  # Codigo para criar um poppup (modal)
+  
+  # Iremos observar o botao de download.
+  # Como shiny nao permite que observemos o botao de download diretamente,
+  #iremos observar o objeto rnDownloads, que tera seu valor alterado sempre que um download for feito.
+  
+  # a funcao de javascript abaixo direciona o usuario ao link de doacao, caso ele clique em ok
+  
+  #print(rnDownloads$ndown)
+  
+  observeEvent(rnDownloads$ndown, {
+    # Show a modal when the button is pressed
+    shinyalert::shinyalert("Obrigado!", 
+                           "Se esse app lhe foi útil, por favor considere fazer uma doação para nos ajudar a manter esse projeto no ar!",
+                           type = "success",
+                           closeOnEsc = TRUE,
+                           callbackJS = "function(x) { if (x > 0) { window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JVF7VGRMANRC6&source=url') ; } }",
+                           closeOnClickOutside = FALSE,
+                           showCancelButton = TRUE,
+                           cancelButtonText = ":(",
+                           confirmButtonText = "Doar!") }, ignoreInit = TRUE)
+  
+  
   output$downloadData <- downloadHandler(
     filename = function() { 
       
@@ -308,7 +341,8 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     },
     
     content = function(file) {
-
+      
+      rnDownloads$ndown <- rnDownloads$ndown + 1
       openxlsx::write.xlsx(as.data.frame( tabgraybill() ), file)
       
     }
@@ -324,6 +358,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     
     content = function(file) {
       
+      rnDownloads$ndown <- rnDownloads$ndown + 1
       
       ggsave(file, graph(), width = 12, height = 6)
       

@@ -2,11 +2,12 @@ library(shiny)
 library(DT)
 library(markdown)
 library(readxl)
+library(openxlsx)
 #library(shinythemes)
 library(googlesheets)
 library(rgeolocate)
 library(dplyr)
-
+library(shinyalert)
 
 inputUserid <- function(inputId, value='') {
   #   print(paste(inputId, "=", value))
@@ -54,6 +55,15 @@ shinyUI( # cria a interface de usuario
         checkboxInput(inputId = "excel",
                       label = "Excel (.xls ou .xslx) ?",
                       value = F),
+        
+        # Selecionar numero da planilha
+        numericInput(inputId = "sheet_n",
+                     label   = "Número da planilha",
+                     value   = 1,
+                     min     = 1,
+                     max     = 30,
+                     step    = 1
+        ),
         
         radioButtons( # esta da ao usuario opcoes para clicar. Apenas uma e selecionada
           inputId='sep',  #Id
@@ -106,6 +116,7 @@ shinyUI( # cria a interface de usuario
           tabPanel("Análise Gráfica",   plotOutput("plot1",click = "plot1_click") , 
                    htmlOutput("texto", inline = T),
                    actionButton("exclude_reset", "Resetar pontos"),
+                   shinyalert::useShinyalert(),
                    downloadButton('downloadPlot', 'Download'),
                   DT::dataTableOutput("exludeded_rows")  ) , # painel para #output$plot; mostra o grafico gerado pelo ggplot
           tabPanel("Resultado", DT::dataTableOutput("tablegraybill", "70%"),  downloadButton('downloadData', 'Download') )      # painel para #output$tabgraybill; mostra o resultado do teste F de Graybill
