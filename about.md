@@ -23,10 +23,9 @@ O projeto foi criado com o intuito de ajudar a comunidade florestal. Para contin
 precisamos de doações para cobrir os custos do servidor que mantêm o app disponível. Sua contribução é de grande ajuda.
 </div>
 
-
 ## Apoiadores do Mês 
 
-<div><p style="float:left;"><a href="https://www.linkedin.com/in/marcio-manfrenato-80032ba6/"><img src="www/marciomanfrenato.jpg" width="100" height="100"/></a></p>
+<div><p style="float:left;">
   
 <p><font size="5">  Marcio Manfrenato</font></p>
     
@@ -38,7 +37,7 @@ precisamos de doações para cobrir os custos do servidor que mantêm o app disp
         
 <div style="clear: left;"></div>
 
-<div><p style="float:left;"><a href="https://www.linkedin.com/in/fernanda-luiza-silva-de-oliveira-0a3bbb43/"><img src="www/fernandaoliveira.jfif" width="100" height="100"/></a></p>
+<div><p style="float:left;">
   
 <p><font size="5">  Fernanda Luiza Silva de Oliveira</font></p>
     
@@ -51,7 +50,7 @@ precisamos de doações para cobrir os custos do servidor que mantêm o app disp
 <div style="clear: left;"></div>
 
 
-<div><p style="float:left;"><a href="https://www.linkedin.com/in/jorge-luiz-b-mainart-15442866/M"><img src="www/jorgemainart.jfif" width="100" height="100"/></a></p>
+<div><p style="float:left;">
   
 <p><font size="5">  Jorge Luiz B. Mainart</font></p>
     
@@ -63,7 +62,7 @@ precisamos de doações para cobrir os custos do servidor que mantêm o app disp
         
 <div style="clear: left;"></div>
 
-<div><p style="float:left;"><a href="https://www.linkedin.com/in/karize-patriota-80927258/"><img src="www/karizepatriota.jfif" width="100" height="100"/></a></p>
+<div><p style="float:left;">
   
 <p><font size="5">  Karize Patriota</font></p>
     
@@ -74,6 +73,18 @@ precisamos de doações para cobrir os custos do servidor que mantêm o app disp
 </div>
         
 <div style="clear: left;"></div>
+
+<p><font size="3">  Para contribuir com o nosso projeto, basta clicar no botão abaixo!</font></p>
+
+<div style="text-align:center">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="JVF7VGRMANRC6" />
+<input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Faça doações com o botão do PayPal" />
+<img alt="" border="0" src="https://www.paypal.com/pt_BR/i/scr/pixel.gif" width="1" height="1" />
+</form>
+</div>
+
 
 <p><font size="3">  Para contribuir com o nosso projeto, basta clicar no botão abaixo!</font></p>
 
