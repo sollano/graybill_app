@@ -20,7 +20,7 @@ estimativas dos parâmetros, conforme metodologia descrita por GRAYBILL
 
 <div style="text-align:justify">
 O projeto foi criado com o intuito de ajudar a comunidade florestal. Para continuarmos a mantê-lo de forma gratuita a todos,
-precisamos de doações para cobrir os custos do servidor que mantêm o app disponível. Sua contribução é de grande ajuda.
+precisamos de doações para cobrir os custos do servidor que mantêm o app disponível. Sua contribuição é de grande ajuda.
 </div>
 
 ## Apoiadores do Mês 
