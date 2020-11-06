@@ -1,13 +1,12 @@
 library(shiny)
-library(DT)
-library(markdown)
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(DT))
 library(readxl)
 library(openxlsx)
-#library(shinythemes)
-library(googlesheets)
+library(googlesheets4)
 library(rgeolocate)
-library(dplyr)
-library(shinyalert)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(shinyalert))
 
 inputUserid <- function(inputId, value='') {
   #   print(paste(inputId, "=", value))

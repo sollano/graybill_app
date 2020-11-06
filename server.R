@@ -1,12 +1,12 @@
 library(shiny)
-library(ggplot2)
-library(DT)
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(DT))
 library(readxl)
 library(openxlsx)
 library(googlesheets)
 library(rgeolocate)
-library(dplyr)
-library(shinyalert)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(shinyalert))
 
 FdeGraybill_ <- function(df, Y1, Yj, alpha = 0.05, Tab = 3) {
   
@@ -53,47 +53,6 @@ FdeGraybill_ <- function(df, Y1, Yj, alpha = 0.05, Tab = 3) {
 }
 
 shinyServer( function(input, output,session) { # como estamos usando reactive, cria-se session
-  
-  # logging ####
-  
-  # once=TRUE resolve o problema de postar duas vezes
-  observeEvent(input$ipid,once=TRUE,eventExpr={
-    
-    # add require pra so rodar quando conseguir o ip
-    req(input$ipid!="" & input$fingerprint!="")
-    
-    fingerprint <- input$fingerprint
-    ipid <- input$ipid
-    
-    suppressMessages(gs_auth("googlesheets_token.rds",verbose = F))
-    
-    # pega informacoes com base no ip
-    result <- rgeolocate::ip_api(input$ipid)
-    #result <- rgeolocate::ip_api("186.244.182.177")
-    
-    # converter data pro timezone correto
-    systime <- lubridate::with_tz(Sys.time(), tzone = result$timezone)
-    
-    # add informacoes
-    
-    result <- result %>% 
-      mutate(
-        app= "App F de Graybill",
-        ip = input$ipid,
-        hash = input$fingerprint,
-        data = format(systime, "%d/%m/%Y"),
-        dia = format(systime, "%d"),
-        mes = format(systime, "%B"),
-        ano = format(systime, "%Y"),
-        hora=format(systime, "%X") ) %>% 
-      select(app,ip,data,hora,region_name,region_code,country_code,isp,latitude,longitude,organisation,timezone,zip_code,status,hash,dia,mes,ano, city_name)
-    
-    gs_add_row(gs_title("app_logs",verbose=FALSE), 
-               ws = 1,
-               input = result,
-               verbose = FALSE)
-    
-  })
   
   # ####
   
@@ -181,7 +140,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     
   })
  
-  output$data <- renderDataTable({ # renderizamos uma DT::DataTable
+  output$data <- DT::renderDataTable({ # renderizamos uma DT::DataTable
   
       
    # salvamos a funcao newData, que contem o arquivo carregado pelo usuario em um objeto
@@ -189,7 +148,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
   
   df <- df[vals$keeprows, ]
   
-  datatable(df, options = list(searching = FALSE,
+  DT::datatable(df, options = list(searching = FALSE,
                                   paging=TRUE,pageLength = 30)) # Criamos uma DT::datatable com base no objeto
   
   # Este arquivo e reativo, e ira se alterar caso o usuario
@@ -206,18 +165,19 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     df <- df[vals$keeprows, ]
     
     x <- FdeGraybill_(df, input$columnY1, input$columnYj, alpha = input$alpha)
+    #x <- forestmangr::graybill_f(df, input$columnY1, input$columnYj, signif = input$alpha)
     
     x
     
   })
   
-  output$tablegraybill <-renderDataTable({ 
+  output$tablegraybill <-DT::renderDataTable({ 
     
     x <- tabgraybill() 
     
     if(is.null(x)){return()} # se o arquivo nao for carregado, retornar null
     
-    datatable(x, options = list(searching = FALSE,
+    DT::datatable(x, options = list(searching = FALSE,
                                           paging=FALSE,
                                 info=FALSE) )
     
@@ -284,7 +244,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     
   })
   
-  output$exludeded_rows <- renderDataTable({
+  output$exludeded_rows <- DT::renderDataTable({
     
     df <- newData() 
     
@@ -297,7 +257,7 @@ shinyServer( function(input, output,session) { # como estamos usando reactive, c
     
     df <- df[!vals$keeprows, ]
     
-    datatable(df, options = list(searching = FALSE,
+    DT::datatable(df, options = list(searching = FALSE,
                                  paging = FALSE,
                                  info=FALSE)) # Criamos uma DT::datatable com base no objeto
 
