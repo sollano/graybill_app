@@ -18,14 +18,10 @@ estimativas dos parâmetros, conforme metodologia descrita por GRAYBILL
 
 ## Pessoal, precisamos atingir a meta mensal de R$ 150,00 para manter este app no ar!
 
-Caso essa meta não seja atingida esse mês, precisaremos fechar os apps até conseguirmos.
-
 Contamos com a sua contribuição!
 
 Lembrando que via PIX ou paypal, é possível cadastrar um pagamento mensal automático,
 assim todo mês você ajuda um pouco.
-
-## Meta Maio: R$ 6 de 150 
 
 ###  Contribua com o nosso projeto via PIX por chave ou código QR, ou por cartão de crédito via Paypal:
 
